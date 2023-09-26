@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="text-center">
+    <h1 class="display-4">Iniciar Sesión</h1>
+    <form action='@Url.Action("Account")' method="post">
+        Usuario <input type="text" class="form-control" name="Username" required>
+        Contraseña <input type="password" class="form-control" name="Contraseña" required><br>
+        Mail <input type="Email" class="form-control" name="Mail" required><br>
+        DNI <input type="Number" class="form-control" name="DNI" required><br>
+        Nombre <input type="text" class="form-control" name="Nombre" required><br>
+        <a href='@Url.Action("Olvido")'>Olvidaste tu contraseña?</a><br><br>
+        <button type="submit" class="btn btn-primary">iniciar sesión</button>
+        
+        @if(ViewBag.MensajeError!=null){
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.MensajeError
+            </div>
+        }
+    </form>
+
+
+</div>

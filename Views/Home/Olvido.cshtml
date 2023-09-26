@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Olvido";
+}
+<h1>Restablecer contraseña</h1>
+<form action='@Url.Action("OlvidarContraseña")' method="post">
+    Mail: <input type="Email" class="form-control" name="Mail" required>
+    <button type="submit" class="btn btn-primary">Restablecer</button>
+
+    @if(ViewBag.MensajeInexistente!=null){
+            <div class="alert alert-danger" role="alert">
+                @ViewBag.MensajeInexistente
+            </div>
+        }
+</form> <br><br><br>
+
+<h2>Tu contraseña es:</h2>
+<h3>@ViewBag.ContraseñaRecordada</h3>
