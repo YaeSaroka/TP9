@@ -35,14 +35,21 @@ public class HomeController : Controller
         return View();
     }
 
+
     [HttpPost]
     public IActionResult Account(string Username, string Contraseña)
     {
         Usuario Usuario = BD.LoginUsuario(Username, Contraseña);
-        if (Usuario == null)
+        Usuario userr = BD.Login_VerificarExistencia(Contraseña);
+        if (Usuario == null )
         {
-            ViewBag.MensajeError = "Usuario inexistente o contraseña incorrecta";
-            return View("Index");
+            ViewBag.MensajeError = "Usuario inexistente";
+            return View("Login");
+        }
+        else if(userr ==null)
+        {
+            ViewBag.MensajeError2 = " Contraseña incorrecta";
+            return View("Login");
         }
         else
         {
@@ -52,8 +59,15 @@ public class HomeController : Controller
     }
 [HttpPost]
     public IActionResult RegistrarUsuario(Usuario user){
-        BD.Registro(user);
-        return View("Registro");
+        Usuario userr = BD.Registro_VerificarExistencia(user.Username);
+        if(userr == null){
+            BD.Registro(user);
+            return View("Index");
+        }
+        else{
+            ViewBag.MSJError= "El usuario ya existe !";
+            return View("Registro");
+        }
     }
     public IActionResult OlvidarContraseña(string Mail)
     {

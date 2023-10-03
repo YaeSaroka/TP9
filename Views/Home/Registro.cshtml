@@ -3,20 +3,51 @@
 }
 <div class="text-center">
     <h1 class="display-4">Registrar</h1>
-    <form action='@Url.Action("RegistrarUsuario")' method="post">
-        Usuario <input type="text" class="form-control" name="Username" required>
-        Contraseña <input type="password" class="form-control" name="Contraseña" required><br>
-        Mail <input type="Email" class="form-control" name="Mail" required><br>
-        DNI <input type="Number" class="form-control" name="DNI" required><br>
-        Nombre <input type="text" class="form-control" name="Nombre" required><br>
+    <form action='@Url.Action("RegistrarUsuario")' method="post" id="miformulario">
+
+        <label for="usuario">Usuario</label>
+        <input type="text" class="form-control" name="Username" required>
+        @if (ViewBag.MSJError != null)
+        {
+            <div style="background-color: red; width: 200px;">
+                @ViewBag.MSJError
+            </div>
+        }
+
+        <div class="form-group">
+            <label for="pass1">Contraseña</label>
+            <input type="password" class="form-control" name="Contraseña" id="pass1" required onkeyup="validarContraseña()"><br>
+        </div>
+        <div class="form-group">
+            <label for="pass2">Confirmar Contraseña</label>
+            <input type="password" class="form-control" name="ConfirmarContraseña" id="pass2" required onkeyup="validarContraseña()"><br>
+        </div>
+        <div class="alert alert-danger d-none" id="password-error1"></div>
+        <div class="alert alert-danger d-none" id="password-error"></div>
+
+
+        <label for="pass1">MAIL</label>
+        <input type="Email" class="form-control" name="Mail" required><br>
+
+
+        <div class="form-group">
+            <label for="pass3">DNI</label>
+            <input type="Number" class="form-control" name="DNI" id="pass3" required onkeyup="validarContraseña()"><br>
+        </div>
+        <div class="alert alert-danger d-none" id="dni-error"></div>
+
+        <label for="pass1">Nombre</label>
+        <input type="text" class="form-control" name="Nombre" required><br>
         <button type="submit" class="btn btn-primary">Crear cuenta</button>
-        
-        @if(ViewBag.MensajeError!=null){
+
+        @if (ViewBag.MensajeError != null)
+        {
             <div class="alert alert-danger" role="alert">
                 @ViewBag.MensajeError
             </div>
         }
+      
+        
     </form>
-    <h1 class="listo"></h1>
     <a href='@Url.Action("Login")'><button type="submit" class="btn btn-primary">Iniciar Sesión</button></a>
 </div>

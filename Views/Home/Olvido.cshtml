@@ -2,16 +2,36 @@
     ViewData["Title"] = "Olvido";
 }
 <h1>Restablecer contraseña</h1>
-<form action='@Url.Action("OlvidarContraseña")' method="post">
-    Mail: <input type="Email" class="form-control" name="Mail" required>
+<form action='@Url.Action("OlvidarContraseña")' method="post" id="olvidar-form">
+    Mail: <input type="Email" class="form-control" name="Mail" id="email-input" required>
     <button type="submit" class="btn btn-primary">Restablecer</button>
 
-    @if(ViewBag.MensajeInexistente!=null){
-            <div class="alert alert-danger" role="alert">
-                @ViewBag.MensajeInexistente
-            </div>
-        }
-</form> <br><br><br>
+    @if(ViewBag.MensajeInexistente != null){
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.MensajeInexistente
+        </div>
+    }
+</form>
+<br><br><br>
 
-<h2>Tu contraseña es:</h2>
-<h3>@ViewBag.ContraseñaRecordada</h3>
+<h2 id="contrasena-title" style="display: none;">Tu contraseña es:</h2>
+<h3 id="contrasena" style="display: none;"></h3>
+
+<script>
+    document.getElementById('olvidar-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = document.getElementById('email-input').value;
+        $.ajax({
+            url: '/HomeController/OlvidarContraseña', 
+            method: 'POST',
+            data: { Mail: email },
+            success: function (data) {
+                setTimeout(function () {
+                    document.getElementById('contrasena-title').style.display = 'block';
+                    document.getElementById('contrasena').style.display = 'block';
+                    document.getElementById('contrasena').textContent = data; 
+                }, 5000); 
+            }
+        });
+    });
+</script>
