@@ -1,8 +1,84 @@
 @{
     ViewData["Title"] = "Login";
 }
+<style>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.login-box {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  text-align: center;
+  max-width: 800px;
+  width: 1200px;
+}
+
+.login-box h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #333;
+}
+.text-gradient {
+  background: linear-gradient(
+    to right, 
+    #fa327f, 
+    #ff449b,              
+    #fd71b2,                
+    #ff97c8,                
+    #ffb6d8,                
+    #ffd2e7                
+  );
+  
+  color: white;             
+  font-size: 24px;          
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+text-fill-color: transparent;
+background-size: 500% auto;
+animation: textShine 3s ease-in-out infinite alternate;
+}
+
+.login-box a {
+color: #007bff;
+text-decoration: none;
+}
+
+.login-box button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background-color: #ff97c8;
+}
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 3px;
+  padding: 10px;
+  margin-top: 30px;
+}
+
+</style>
+<section>
+    <div class="container">
+        <div class="login-box">
+            <h1 class="text-gradient">Registrate</h1>
 <div class="text-center">
-    <h1 class="display-4">Registrar</h1>
     <form action='@Url.Action("RegistrarUsuario")' method="post" id="miformulario">
 
         <label for="usuario">Usuario</label>
@@ -46,8 +122,10 @@
                 @ViewBag.MensajeError
             </div>
         }
-      
         
     </form>
     <a href='@Url.Action("Login")'><button type="submit" class="btn btn-primary">Iniciar Sesión</button></a>
+        </div>
+    </div>
+</section>
 </div>

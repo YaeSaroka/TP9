@@ -2,42 +2,107 @@
     ViewData["Title"] = "Login";
 }
 <style>
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 80vh;
-    }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
+}
 
-    .login-box {
-        border: 50px solid black;
-        background-color: black;
-        color: white;
-        text-align: center;
-        padding: 20px;
-    }
+.login-box {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  text-align: center;
+  max-width: 700px;
+  width: 500px;
+}
+
+.login-box h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: #333;
+}
+.text-gradient {
+  background: linear-gradient(
+    to right, 
+    #fa327f, 
+    #ff449b,              
+    #fd71b2,                
+    #ff97c8,                
+    #ffb6d8,                
+    #ffd2e7                
+  );
+  
+  color: white;             
+  font-size: 24px;          
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+text-fill-color: transparent;
+background-size: 500% auto;
+animation: textShine 3s ease-in-out infinite alternate;
+}
+
+.login-box a {
+color: #007bff;
+text-decoration: none;
+}
+
+.login-box button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background-color: #ff97c8;
+}
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 3px;
+  padding: 10px;
+  margin-top: 30px;
+}
+#olvido{
+  font-size: 13px;
+  color: black;
+}
+#olvido:hover{
+  color: #ff449b;
+}
 </style>
-<div class="container">
-    <div class="login-box">
-        <h1 class="display-4">Iniciar Sesión</h1>
-        <form action='@Url.Action("Account")' method="post">
-            Usuario <input type="text" class="form-control" name="Username" required>
-            Contraseña <input type="password" class="form-control" name="Contraseña" required><br>
-            <a href='@Url.Action("Olvido")'>Olvidaste tu contraseña?</a><br><br>
-            <button type="submit" class="btn btn-primary">iniciar sesión</button>
+<section>
+    <div class="container">
+        <div class="login-box">
+            <h1 class="text-gradient">Iniciar Sesión</h1>
+            <form action='@Url.Action("Account")' method="post">
+                <input type="text" class="form-control" name="Username" placeholder="Usuario" required>
+                <input type="password" class="form-control" name="Contraseña" placeholder="Contraseña" required><br>
+                <a href='@Url.Action("Olvido")' id="olvido">Olvidaste tu contraseña?</a><br>
+                <button type="submit">Iniciar Sesión</button>
 
-            @if (ViewBag.MensajeError != null)
-            {
-                <div class="alert alert-danger" role="alert">
-                    @ViewBag.MensajeError
-                </div>
-            }
-            @if (ViewBag.MensajeError2 != null)
-            {
-                <div class="alert alert-danger" role="alert">
-                    @ViewBag.MensajeError2
-                </div>
-            }
-        </form>
+                @if (ViewBag.MensajeError != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewBag.MensajeError
+                    </div>
+                }
+                @if (ViewBag.MensajeError2 != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewBag.MensajeError2
+                    </div>
+                }
+            </form>
+        </div>
     </div>
-</div>
+</section>

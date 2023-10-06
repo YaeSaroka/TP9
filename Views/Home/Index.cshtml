@@ -2,7 +2,42 @@
     ViewData["Title"] = "Index";
 }
 <div class="text-center">
-    <h1 class="display-4">¡ Bienvenido !</h1>
-    <a href='@Url.Action("Login")'><button style="margin-top: 20px;" type="submit" class="card-button">Iniciar Sesión</button></a>
-    <a href='@Url.Action("Registro")'><button style="margin-top: 20px;" type="submit" class="card-button">Registrarse</button><a>
+    <h1 class="display-4">¡Bienvenido!</h1>
+    <p>Explora nuestras increíbles características</p>
 </div>
+    
+<section class="text-center">
+    <div class="container">
+    <a href='@Url.Action("Login")' class="btn btn-primary btn-lg btn-block">Iniciar Sesión</a>
+    </div>
+    <div class="container">
+    <a href='@Url.Action("Registro")' class="btn btn-secondary btn-lg btn-block">Registrarse</a>
+    </div>
+</section>
+
+
+<style>
+    h1{
+        margin-top:200px;
+    }
+    p {
+        font-size: 13px;
+    }
+    .container{
+        margin-top:50px;
+    }
+    .btn-primary{
+        background-color: black;
+    }
+    .btn-secondary{
+        background-color: black;
+    }
+    .btn-primary:hover {
+        background-color: #ff449b;
+    }
+    .btn-secondary:hover {
+        background-color: #ff97c8;
+    }
+
+
+</style>
